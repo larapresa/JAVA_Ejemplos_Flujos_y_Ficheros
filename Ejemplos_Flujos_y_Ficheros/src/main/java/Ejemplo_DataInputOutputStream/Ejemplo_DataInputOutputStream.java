@@ -7,7 +7,9 @@ package Ejemplo_DataInputOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -18,7 +20,7 @@ public class Ejemplo_DataInputOutputStream {
 
     public static void main(String args[]) throws FileNotFoundException {
         int numInt;
-        String cadena;
+        boolean booleano;
         float numFloat;
         
         Scanner teclado = new Scanner(System.in);
@@ -34,15 +36,24 @@ public class Ejemplo_DataInputOutputStream {
             // -------------------------------------------
             System.out.println("Inserta un número entero:");
             numInt = teclado.nextInt();
+            teclado.nextLine();// leemos salto de linea
             escritTipos.writeInt(numInt);
             
             System.out.println("Inserta un número con decimales: ");
             numFloat = teclado.nextFloat();
+            teclado.nextLine();// leemos salto de linea
             escritTipos.writeFloat(numFloat);
             
-            System.out.println("Inserta una cadena:");
-            cadena = teclado.nextLine();
-            escritTipos.writeChars(cadena);
+            System.out.println("Inserta un número entero:");
+            numInt = teclado.nextInt();
+            teclado.nextLine();// leemos salto de linea
+            escritTipos.writeInt(numInt);
+            
+            System.out.println("Inserta un número con decimales: ");
+            numFloat = teclado.nextFloat();
+            teclado.nextLine();// leemos salto de linea
+            escritTipos.writeFloat(numFloat);
+           
             
             escritTipos.close();
             // -------------------------------------------
@@ -50,9 +61,11 @@ public class Ejemplo_DataInputOutputStream {
             // --------------------------------------------
             numInt = lectTipos.readInt();
             numFloat = lectTipos.readFloat();
-            cadena = lectTipos.readLine();
+            numInt = lectTipos.readInt();
+            numFloat = lectTipos.readFloat();
             System.out.println(" \nLos datos leídos del fichero son: \n");
-            System.out.println("-**:" + numInt + "-**:" + numFloat + "-**:" + cadena);
+            System.out.println("Número entero:" + numInt + " Número decimal:" + numFloat + " Número entero:" + numInt + " Número decimal:" + numFloat );
+            lectTipos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
